@@ -18,7 +18,6 @@ with st.form(key='my_form'):
     del_est = st.radio("Delivery estimation", ("5'den fazla", "5'den az", "Individual"))
     industry = st.selectbox("Industry", ('Autos / Parts & Services', 'Beauty & Fitness', 'Bevarages', 'Cakes & Bakeries', 'Consumer Electronics / Accessories', 'Courier Lead', 'Dental Products', 'Documents', 'E-Commerce', 'Fashion & Lifestyle', 'Flowers', 'Food - Fresh Products', 'Food - Restaurant', 'Gifts & Souvenir', 'Grocery', 'Grocery - Pet Products', 'Healthcare / Pharmacy', 'Individuals', 'Laundry Services', 'Media & Communication', 'No Answer/ No Response', 'Optics', 'Others', 'Supermarket'))
     notes = st.text_input("Notes")
-    lost_reason = st.selectbox("Lost reason", ('High Price', 'Service Issues', 'In House Courier', 'Same Day Delivery not Required', 'Different Logistics Need', 'Thermal Bag Requirement', 'Can not reach/No Response', 'Courier Lead', 'Delivery Services not required', 'Wrong lead - Outside service area', 'Wrong Lead - Individual', 'Has another active DV account'))
     submit_button = st.form_submit_button(label='Create Deal')
     
 if submit_button:
