@@ -26,7 +26,7 @@ else:
        st.subheader("Teşekkürler")
 
     #create organization func
-    def create_org(org_name, org_email, org_phone, org_region):
+   
         organization = {'owner_id':11539544,
                 "name": org_name,
                "b1faf8cf25454aa8690d7b761def5b29be2c9b07": org_email,
@@ -36,125 +36,6 @@ else:
         org = r.post("https://api.pipedrive.com/v1/organizations?api_token=st.secrets['token']", json=organization)
         result_1 = org.json()
         org_id = result_1["data"]["id"]
-        return(org_id)
+        st.write(org_id)
 
-    #create person func
-    def create_person(org_name, org_email, org_phone, org_region, org_id):
-        person = {'owner_id':11539544,
-                  "org_id": org_id,
-                  "name": org_name,
-                 'phone': [{'label': 'work', 'value': org_phone, 'primary': True}],
-                  'email': [{'label': 'work',
-                  'value': org_email,
-                  'primary': True}],
-                 "0507562a28a905fbe5917476d9b800fbf7dc1bdd": org_region,
-                   'visible_to': '5'
-        }
-        per = r.post("https://api.pipedrive.com/v1/persons?api_token=st.secrets['token']", json=person)
-        result_1 = per.json()
-        per_id= result_1["data"]["id"]
-        return(per_id)
-
-
-    if legal_type == 'Individual':
-       org_id = create_org(org_name, org_email, org_phone, org_region)
-       person_id = create_person(org_name, org_email, org_phone, org_region, org_id)
-       deal = {"user_id": 11539544,
-                "title": org_name+" Deal",
-                "org_id": org_id,
-                "person_id": person_id,
-                "visible_to": '5',
-                "stage_id": 163,
-                "status": 'lost',
-                "pipeline_id": 24,
-                "3a662cbe0cfc0973a1eea76537b9c7515597f853": "TR Outsource Outbound",
-                "17da88af586cac66b9aca3f151bf3dbc33b48ba7": 104, #legal type
-                "fbe218c1b8ec237d98c16f6f618ab3f8407c0718": 464, #industry
-                "89512fda9a0ecb6eae1c93acffaaf1decdd2647b": 226,
-                "lost_reason": "Wrong Lead - Individual",
-                "label": 992}
-       deals = r.post("https://api.pipedrive.com/v1/deals?api_token=st.secrets['token']", json=deal)
-       result_2 = deals.json()
-       deal_id=result_2["data"]["id"]
-       st.write("Deal ID: ", deal_id)
-       act = {"deal_id": deal_id,
-           "person_id": person_id,
-           "org_id": org_id,
-           "note": notes+" "+org_phone2,
-           "user_id": 11539544,
-            "done": 1}
-       actt = r.post("https://api.pipedrive.com/v1/activities?api_token=st.secrets['token']", json=act)
-       res = actt.json()
-       st.write(res["success"])
-    elif legal_type == "No answer":
-       org_id = create_org(org_name, org_email, org_phone, org_region)
-       person_id = create_person(org_name, org_email, org_phone, org_region, org_id)
-       deal = {"user_id": 11539544,
-                "title": org_name+" Deal",
-                "org_id": org_id,
-                "person_id": person_id,
-                "visible_to": '5',
-                "stage_id": 163,
-                "status": 'lost',
-                "pipeline_id": 24,
-                "3a662cbe0cfc0973a1eea76537b9c7515597f853": "TR Outsource Outbound",
-                "17da88af586cac66b9aca3f151bf3dbc33b48ba7": 460,
-                "fbe218c1b8ec237d98c16f6f618ab3f8407c0718": 466, 
-                "89512fda9a0ecb6eae1c93acffaaf1decdd2647b": 226,
-                "lost_reason": "Can not reach/No Response",
-                "label": 992}
-       deals = r.post("https://api.pipedrive.com/v1/deals?api_token=st.secrets['token']", json=deal)
-       result_2 = deals.json()
-       deal_id=result_2["data"]["id"]
-       st.write("Deal ID: ", deal_id)
-       act = {"deal_id": deal_id,
-           "person_id": person_id,
-           "org_id": org_id,
-           "note": notes+" "+org_phone2,
-           "user_id": 11539544,
-            "done": 1}
-       actt = r.post("https://api.pipedrive.com/v1/activities?api_token=st.secrets['token']", json=act)
-       res = actt.json()
-       st.write(res["success"])
-    elif legal_type == "Business":
-       org_id = create_org(org_name, org_email, org_phone, org_region)
-       person_id = create_person(org_name, org_email, org_phone, org_region, org_id)
-       deal = {"user_id": 11539544,
-                "title": org_name+" Deal",
-                "org_id": org_id,
-                "person_id": person_id,
-                "visible_to": '5',
-                "stage_id": 297,
-                "status": 'open',
-                "pipeline_id": 3,
-                "3a662cbe0cfc0973a1eea76537b9c7515597f853": "TR Outsource Outbound",
-                "17da88af586cac66b9aca3f151bf3dbc33b48ba7": 105, #legal type
-                "fbe218c1b8ec237d98c16f6f618ab3f8407c0718": industry, 
-                "89512fda9a0ecb6eae1c93acffaaf1decdd2647b": 226,
-                "label": 992}
-       deals = r.post("https://api.pipedrive.com/v1/deals?api_token=st.secrets['token']", json=deal)
-       result_2 = deals.json()
-       deal_id=result_2["data"]["id"]
-       st.write("Deal ID: ", deal_id)
-       act = {"deal_id": deal_id,
-           "person_id": person_id,
-           "org_id": org_id,
-           "note": "Notlar: "+notes+" Other phone:"+org_phone2+" Estimated dels: "+del_est,
-           "user_id": 11539544,
-            "done": 1}
-       actt = r.post("https://api.pipedrive.com/v1/activities?api_token=st.secrets['token']", json=act)
-       res = actt.json()
-       st.write(res["success"])
-    else:
-        st.write("hiçbir şey olmamışsa bile bir şey olmuş olabilir")
-
-
-
-
-
-
-
-
-
-
-
+    
