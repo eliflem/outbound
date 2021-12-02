@@ -33,7 +33,7 @@ else:
                "d3ace2189605037b38016a44957b190f45a924b9": org_phone,
                "208c219904faba22afb629d63d1c9b89c516cd13": org_region,
                "visible_to": '5'}
-        org = r.post("https://api.pipedrive.com/v1/organizations?api_token='+st.secrets['token'], json=organization)
+        org = r.post('https://api.pipedrive.com/v1/organizations?api_token='+st.secrets['token'], json=organization)
         result_1 = org.json()
         org_id = result_1["data"]["id"]
         return(org_id)
@@ -50,7 +50,7 @@ else:
                  "0507562a28a905fbe5917476d9b800fbf7dc1bdd": org_region,
                    'visible_to': '5'
         }
-        per = r.post("https://api.pipedrive.com/v1/persons?api_token='+st.secrets['token'], json=person)
+        per = r.post('https://api.pipedrive.com/v1/persons?api_token='+st.secrets['token'], json=person)
         result_1 = per.json()
         per_id= result_1["data"]["id"]
         return(per_id)
@@ -73,7 +73,7 @@ else:
                 "89512fda9a0ecb6eae1c93acffaaf1decdd2647b": 226,
                 "lost_reason": "Wrong Lead - Individual",
                 "label": 992}
-       deals = r.post("https://api.pipedrive.com/v1/deals?api_token='+st.secrets['token'], json=deal)
+       deals = r.post('https://api.pipedrive.com/v1/deals?api_token='+st.secrets['token'], json=deal)
        result_2 = deals.json()
        deal_id=result_2["data"]["id"]
        st.write("Deal ID: ", deal_id)
@@ -83,7 +83,7 @@ else:
            "note": notes+" "+org_phone2,
            "user_id": 11539544,
             "done": 1}
-       actt = r.post("https://api.pipedrive.com/v1/activities?api_token='+st.secrets['token'], json=act)
+       actt = r.post('https://api.pipedrive.com/v1/activities?api_token='+st.secrets['token'], json=act)
        res = actt.json()
        st.write(res["success"])
     elif legal_type == "No answer":
@@ -103,7 +103,7 @@ else:
                 "89512fda9a0ecb6eae1c93acffaaf1decdd2647b": 226,
                 "lost_reason": "Can not reach/No Response",
                 "label": 992}
-       deals = r.post("https://api.pipedrive.com/v1/deals?api_token='+st.secrets['token'], json=deal)
+       deals = r.post('https://api.pipedrive.com/v1/deals?api_token='+st.secrets['token'], json=deal)
        result_2 = deals.json()
        deal_id=result_2["data"]["id"]
        st.write("Deal ID: ", deal_id)
@@ -113,7 +113,7 @@ else:
            "note": notes+" "+org_phone2,
            "user_id": 11539544,
             "done": 1}
-       actt = r.post("https://api.pipedrive.com/v1/activities?api_token='+st.secrets['token'], json=act)
+       actt = r.post('https://api.pipedrive.com/v1/activities?api_token='+st.secrets['token'], json=act)
        res = actt.json()
        st.write(res["success"])
     elif legal_type == "Business":
@@ -132,7 +132,7 @@ else:
                 "fbe218c1b8ec237d98c16f6f618ab3f8407c0718": industry, 
                 "89512fda9a0ecb6eae1c93acffaaf1decdd2647b": 226,
                 "label": 992}
-       deals = r.post("https://api.pipedrive.com/v1/deals?api_token='+st.secrets['token'], json=deal)
+       deals = r.post('https://api.pipedrive.com/v1/deals?api_token='+st.secrets['token'], json=deal)
        result_2 = deals.json()
        deal_id=result_2["data"]["id"]
        st.write("Deal ID: ", deal_id)
@@ -142,7 +142,7 @@ else:
            "note": "Notlar: "+notes+" Other phone:"+org_phone2+" Estimated dels: "+del_est,
            "user_id": 11539544,
             "done": 1}
-       actt = r.post("https://api.pipedrive.com/v1/activities?api_token='+st.secrets['token'], json=act)
+       actt = r.post('https://api.pipedrive.com/v1/activities?api_token='+st.secrets['token'], json=act)
        res = actt.json()
        st.write(res["success"])
     else:
