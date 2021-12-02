@@ -33,7 +33,7 @@ else:
            "d3ace2189605037b38016a44957b190f45a924b9": org_phone,
            "208c219904faba22afb629d63d1c9b89c516cd13": org_region,
            "visible_to": '5'}
-    org = r.post("https://api.pipedrive.com/v1/organizations?api_token=st.secrets['token']", json=organization)
+    org = r.post("https://api.pipedrive.com/v1/organizations?api_token=st.secrets["token"]", json=organization)
     result_1 = org.json()
     st.write(result_1)
 
