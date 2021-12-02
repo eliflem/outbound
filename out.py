@@ -35,7 +35,6 @@ else:
            "visible_to": '5'}
     org = r.post("https://api.pipedrive.com/v1/organizations?api_token=st.secrets['token']", json=organization)
     result_1 = org.json()
-    org_id = result_1["data"]["id"]
-    st.write(org_id)
+    st.write(result_1)
 
     
